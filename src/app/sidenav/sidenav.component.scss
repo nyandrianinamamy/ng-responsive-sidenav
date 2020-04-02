@@ -71,6 +71,9 @@ li {
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  transition: width 4s, left 3s;
+  box-shadow: inset -1px 0 0 #e5e5e5
 }
 ul {
   a {

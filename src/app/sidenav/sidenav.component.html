@@ -1,4 +1,3 @@
-<!-- is-mobile -->
 <nav class="side-nav" [ngClass]="isDesktop ? 'is-desktop' : 'is-mobile'">
   <ul *ngFor="let menu of [1,2]; let i = index"
       [class.active]="id === i"
