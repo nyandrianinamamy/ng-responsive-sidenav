@@ -23,6 +23,16 @@
   </ul>
   <div class="fill"></div>
   <ul>
-				<li class="action-btn"><button type="button" (click)="toggle()">Collapse</button></li>
+				<li class="action-btn" (click)="toggle()">
+            <div class="icon">
+              <img *ngIf="isDesktop; else collapsedIcon" src="/assets/icons/backward.svg"/>
+              <ng-template #collapsedIcon>
+                <img src="/assets/icons/forward.svg"/>
+              </ng-template>
+            </div>
+            <div class="collapse-text">
+              Collapse sidebar
+            </div>
+        </li>
   </ul>
 </nav>

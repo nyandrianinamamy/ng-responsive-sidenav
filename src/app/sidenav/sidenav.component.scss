@@ -11,6 +11,8 @@ $parent-menu-mobile: 44px;
 
 $fly-out: 146px;
 
+$action-btn-height: 50px;
+
 $submenu-height: 2.6em;
 
 $padding-left-parent: 20px;
@@ -21,6 +23,7 @@ $sidenav-bg: #fafafa;
 $hover-bg: #e2e2e2;
 $text-default: #707070;
 $text-active: #393982;
+$border-color: #e5e5e5;
 
 * {
   font-size: 14px;
@@ -73,7 +76,7 @@ li {
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: inset -1px 0 0 #e5e5e5;
+  box-shadow: inset -1px 0 0 $border-color;
   transition: width 0.3s, left 0.3s;
   width: $width-desktop;
 }
@@ -97,6 +100,37 @@ ul {
       height: $submenu-height;
       display: flex;
       align-items: center;
+    }
+  }
+
+  .action-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    height: $action-btn-height;
+
+    border-top: 1px solid $border-color;
+
+    .icon {
+      height: 100%;
+      width: $action-btn-height; // To make a square
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        height: 12px;
+        width: auto;
+        padding-left: 10px;
+      }
+    }
+
+    .collapse-text {
+      white-space: nowrap;
+    }
+
+    &:hover {
+      @include hover-style-no-border;
     }
   }
 }
@@ -138,6 +172,17 @@ ul {
     width: $width-mobile-children;
     a {
       padding-left: $padding-left-children;
+    }
+  }
+
+  .action-btn {
+    .icon {
+      img {
+        padding: 0;
+      }
+    }
+    .collapse-text {
+      display: none;
     }
   }
 
