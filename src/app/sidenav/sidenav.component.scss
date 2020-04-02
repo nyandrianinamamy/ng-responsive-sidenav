@@ -13,6 +13,8 @@ $fly-out: 146px;
 
 $action-btn-height: 50px;
 
+$header-height: 40px;
+
 $submenu-height: 2.6em;
 
 $padding-left-parent: 20px;
@@ -137,6 +139,12 @@ ul {
 
 /* Mobile responsive */
 
+.side-nav {
+  position: fixed;
+  top: $header-height;
+  height: calc(100% - #{$header-height});
+}
+
 .side-nav.is-mobile {
   width: $width-mobile;
 }
@@ -252,6 +260,12 @@ ul {
 }
 
 /* Desktop responsive */
+
+@media only screen and (min-width: 768px) {
+  .side-nav {
+    position: initial;
+  }
+}
 
 /* General stylings */
 .is-desktop ul {
