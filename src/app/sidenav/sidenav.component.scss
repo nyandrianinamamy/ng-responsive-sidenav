@@ -1,0 +1,283 @@
+$width-mobile: 50px;
+$width-mobile-children: 150px;
+
+$width-desktop: 220px;
+
+$logo-desktop: 16px;
+$logo-mobile: 20px;
+
+$parent-menu-desktop: 3.21em;
+$parent-menu-mobile: 44px;
+
+$submenu-height: 2.6em;
+
+$padding-left-parent: 20px;
+$padding-left-children: 10px;
+
+$children-bg: #f1eded;
+$sidenav-bg: #fafafa;
+$hover-bg: #e2e2e2;
+$text-default: #707070;
+$text-active: #393982;
+
+* {
+  font-size: 14px;
+  font-style: "Noto Sans";
+}
+
+a, span {
+  text-decoration: none;
+  color: $text-default;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+.fill {
+  flex: 1 1 auto;
+}
+
+@mixin active-style {
+  box-shadow: inset 3px 0 0 #1784c7;
+  color: $text-active;
+  .label .link a, li.active > a {
+      color: inherit;
+  }
+  li.active {
+    box-shadow: inset 3px 0 0 #1784c7;
+    background-color: $hover-bg;
+  }
+}
+
+@mixin hover-style-no-border {
+  background-color: $hover-bg;
+  cursor: pointer;
+}
+
+@mixin hover-style {
+  @include hover-style-no-border;
+  box-shadow: inset 3px 0 0 #1784c7;
+}
+
+
+/* General stylings */
+.side-nav {
+  background-color: $sidenav-bg; // menu bg
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+ul {
+  a {
+    width: 100%;
+    display: block;
+  }
+
+  .label {
+    .logo {
+      img {
+        height: 100%;
+      }
+    }
+  }
+  .has-children {
+    background-color: $children-bg;
+    .submenu {
+      height: $submenu-height;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+/* Mobile responsive */
+
+.is-mobile.sidenav {
+  width: $width-mobile;
+}
+
+.is-mobile ul {
+  position: relative;
+  .label {
+    height: $parent-menu-mobile;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      height: $logo-mobile;
+      min-height: $logo-mobile;
+    }
+
+    .link {
+      background-color: $children-bg;
+      height: $parent-menu-mobile;
+      width: $width-mobile-children;
+
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        padding-left: $padding-left-children;
+      }
+    }
+  }
+  .has-children {
+    width: $width-mobile-children;
+    a {
+      padding-left: $padding-left-children;
+    }
+  }
+
+  /* Parent link positioning */
+  .label {
+    .link {
+      position: absolute;
+      left: $width-mobile;
+      top: 0;
+    }
+  }
+
+  /* Children positioning */
+  .has-children {
+    position: absolute;
+    top: $parent-menu-mobile;
+    left: $width-mobile;
+    z-index: 10;
+  }
+}
+
+/* Active styling */
+.is-mobile ul.active > .label ,
+.is-mobile ul.active > .has-children ul li.active   {
+    @include active-style;
+}
+
+/* Hover Styling */
+.is-mobile ul:hover {
+    .label {
+      @include hover-style;
+    }
+
+    .link:hover {
+      @include hover-style;
+    }
+
+    .has-children ul li:hover {
+      @include hover-style;
+    }
+}
+
+/* Hover logic */
+.is-mobile ul {
+  .label {
+    .link {
+      visibility: hidden;
+    }
+  }
+  .has-children {
+    display: none;
+  }
+}
+.is-mobile ul:hover {
+  .label {
+    .link {
+      visibility: visible;
+    }
+  }
+  .has-children {
+    display: initial;
+  }
+}
+
+/* Desktop responsive */
+
+@media only screen and (min-width: 768px) {
+  .side-nav.is-desktop {
+    width: $width-desktop;
+  }
+
+  /* General stylings */
+  .is-desktop ul {
+    .label {
+      height: $parent-menu-desktop;
+
+      display: grid;
+      grid-template-columns: $logo-desktop auto;
+      grid-column-gap: 10px;
+
+      align-items: center;
+      justify-content: flex-start;
+
+      padding-left: $padding-left-parent;
+
+      .logo {
+        height: $logo-desktop;
+        min-height: $logo-desktop;
+      }
+
+      .link {
+        height: $logo-mobile;
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+
+    .has-children {
+      width: 100%;
+      a {
+        padding-left: $padding-left-parent + $logo-desktop + $padding-left-children;
+      }
+    }
+  }
+
+  /* Show children logic */
+  .is-desktop ul:not(.active) {
+    .has-children {
+      display: none;
+    }
+  }
+  .is-desktop ul:not(.active):hover {
+    position: relative;
+    .has-children {
+      display: initial;
+      position: absolute;
+      top: 0;
+      left: $width-desktop;
+
+      a {
+        padding: $padding-left-children;
+      }
+    }
+  }
+
+  /* Active logic */
+  .is-desktop ul.active {
+    & {
+      @include active-style;
+    }
+    .has-children {
+      @include active-style;
+    }
+  }
+
+  /* Hover logic */
+  .is-desktop ul:not(.active) {
+    &:hover {
+      .label {
+        @include hover-style;
+      }
+    }
+    .has-children li:hover {
+      @include hover-style-no-border;
+    }
+  }
+
+  .is-desktop ul.active {
+    .has-children li:hover {
+      @include hover-style;
+    }
+  }
+}
