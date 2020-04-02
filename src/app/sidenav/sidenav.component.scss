@@ -1,27 +1,23 @@
-$width-mobile: 50px;
-$width-mobile-children: 150px;
+$sidenav-width-small: 50px;
+$sidenav-width-small-children: 150px;
+$sidenav-width-large: 220px;
 
-$width-desktop: 220px;
+$icon-large-screen: 16px;
+$icon-small-screen: 20px;
 
-$logo-desktop: 16px;
-$logo-mobile: 20px;
-
-$parent-menu-desktop: 3.21em;
-$parent-menu-mobile: 44px;
-
-$fly-out: 146px;
-
-$action-btn-height: 50px;
-
-$header-height: 40px;
+$menu-height-large: 3.21em;
+$menu-height-small: 44px;
 
 $submenu-height: 2.6em;
+
+$action-btn-height: 50px;
+$header-height: 40px;
 
 $padding-left-parent: 20px;
 $padding-left-children: 10px;
 
-$children-bg: #f1eded;
 $sidenav-bg: #fafafa;
+$submenu-bg: #f1eded;
 $hover-bg: #e2e2e2;
 $text-default: #707070;
 $text-active: #393982;
@@ -80,7 +76,7 @@ li {
   flex-direction: column;
   box-shadow: inset -1px 0 0 $border-color;
   transition: width 0.3s, left 0.3s;
-  width: $width-desktop;
+  width: $sidenav-width-large;
 }
 ul {
   a {
@@ -97,7 +93,7 @@ ul {
     }
   }
   .has-children {
-    background-color: $children-bg;
+    background-color: $submenu-bg;
     .submenu {
       height: $submenu-height;
       display: flex;
@@ -146,26 +142,26 @@ ul {
 }
 
 .side-nav.is-mobile {
-  width: $width-mobile;
+  width: $sidenav-width-small;
 }
 
 .is-mobile ul {
   position: relative;
   .label {
-    height: $parent-menu-mobile;
+    height: $menu-height-small;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .logo {
-      height: $logo-mobile;
-      min-height: $logo-mobile;
+      height: $icon-small-screen;
+      min-height: $icon-small-screen;
     }
 
     .link {
-      background-color: $children-bg;
-      height: $parent-menu-mobile;
-      width: $width-mobile-children;
+      background-color: $submenu-bg;
+      height: $menu-height-small;
+      width: $sidenav-width-small-children;
 
       display: flex !important;
       align-items: center;
@@ -177,7 +173,7 @@ ul {
     }
   }
   .has-children {
-    width: $width-mobile-children;
+    width: $sidenav-width-small-children;
     a {
       padding-left: $padding-left-children;
     }
@@ -198,7 +194,7 @@ ul {
   .label {
     .link {
       position: absolute;
-      left: $width-mobile;
+      left: $sidenav-width-small;
       top: 0;
     }
   }
@@ -206,8 +202,8 @@ ul {
   /* Children positioning */
   .has-children {
     position: absolute;
-    top: $parent-menu-mobile;
-    left: $width-mobile;
+    top: $menu-height-small;
+    left: $sidenav-width-small;
     z-index: 10;
   }
 }
@@ -219,7 +215,7 @@ ul {
 }
 
 .is-mobile ul.active {
-  background-color: $children-bg;
+  background-color: $submenu-bg;
 }
 
 /* Hover Styling */
@@ -271,10 +267,10 @@ ul {
 /* General stylings */
 .is-desktop ul {
   .label {
-    height: $parent-menu-desktop;
+    height: $menu-height-large;
 
     display: grid;
-    grid-template-columns: $logo-desktop auto;
+    grid-template-columns: $icon-large-screen auto;
     grid-column-gap: 10px;
 
     align-items: center;
@@ -283,12 +279,12 @@ ul {
     padding-left: $padding-left-parent;
 
     .logo {
-      height: $logo-desktop;
-      min-height: $logo-desktop;
+      height: $icon-large-screen;
+      min-height: $icon-large-screen;
     }
 
     .link {
-      height: $logo-mobile;
+      height: $icon-small-screen;
       display: flex;
       align-items: flex-end;
     }
@@ -297,7 +293,7 @@ ul {
   .has-children {
     width: 100%;
     a {
-      padding-left: $padding-left-parent + $logo-desktop + $padding-left-children;
+      padding-left: $padding-left-parent + $icon-large-screen + $padding-left-children;
     }
   }
 }
@@ -314,7 +310,7 @@ ul {
     display: initial;
     position: absolute;
     top: 0;
-    left: $width-desktop;
+    left: $sidenav-width-large;
 
     a {
       padding: $padding-left-children;
@@ -325,7 +321,7 @@ ul {
 /* Active logic */
 .is-desktop ul.active {
   & {
-    background-color: $children-bg;
+    background-color: $submenu-bg;
     @include active-style;
   }
   .has-children {
