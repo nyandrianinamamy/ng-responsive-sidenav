@@ -9,6 +9,8 @@ $logo-mobile: 20px;
 $parent-menu-desktop: 3.21em;
 $parent-menu-mobile: 44px;
 
+$fly-out: 146px;
+
 $submenu-height: 2.6em;
 
 $padding-left-parent: 20px;
@@ -22,7 +24,7 @@ $text-active: #393982;
 
 * {
   font-size: 14px;
-  font-style: "Noto Sans";
+  font-style: 'Noto Sans';
 }
 
 a, span {
@@ -67,13 +69,13 @@ li {
 
 /* General stylings */
 .side-nav {
-  background-color: $sidenav-bg; // menu bg
+  background-color: $sidenav-bg;
   height: 100%;
   display: flex;
   flex-direction: column;
-
-  transition: width 4s, left 3s;
-  box-shadow: inset -1px 0 0 #e5e5e5
+  box-shadow: inset -1px 0 0 #e5e5e5;
+  transition: width 0.3s, left 0.3s;
+  width: $width-desktop;
 }
 ul {
   a {
@@ -100,7 +102,7 @@ ul {
 
 /* Mobile responsive */
 
-.is-mobile.sidenav {
+.side-nav.is-mobile {
   width: $width-mobile;
 }
 
@@ -202,10 +204,6 @@ ul {
 /* Desktop responsive */
 
 @media only screen and (min-width: 768px) {
-  .side-nav.is-desktop {
-    width: $width-desktop;
-  }
-
   /* General stylings */
   .is-desktop ul {
     .label {
