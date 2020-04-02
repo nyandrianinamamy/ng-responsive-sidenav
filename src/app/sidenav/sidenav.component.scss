@@ -210,6 +210,10 @@ ul {
     @include active-style;
 }
 
+.is-mobile ul.active {
+  background-color: $children-bg;
+}
+
 /* Hover Styling */
 .is-mobile ul:hover {
     .label {
@@ -249,86 +253,85 @@ ul {
 
 /* Desktop responsive */
 
-@media only screen and (min-width: 768px) {
-  /* General stylings */
-  .is-desktop ul {
+/* General stylings */
+.is-desktop ul {
+  .label {
+    height: $parent-menu-desktop;
+
+    display: grid;
+    grid-template-columns: $logo-desktop auto;
+    grid-column-gap: 10px;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-left: $padding-left-parent;
+
+    .logo {
+      height: $logo-desktop;
+      min-height: $logo-desktop;
+    }
+
+    .link {
+      height: $logo-mobile;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  .has-children {
+    width: 100%;
+    a {
+      padding-left: $padding-left-parent + $logo-desktop + $padding-left-children;
+    }
+  }
+}
+
+/* Show children logic */
+.is-desktop ul:not(.active) {
+  .has-children {
+    display: none;
+  }
+}
+.is-desktop ul:not(.active):hover {
+  position: relative;
+  .has-children {
+    display: initial;
+    position: absolute;
+    top: 0;
+    left: $width-desktop;
+
+    a {
+      padding: $padding-left-children;
+    }
+  }
+}
+
+/* Active logic */
+.is-desktop ul.active {
+  & {
+    background-color: $children-bg;
+    @include active-style;
+  }
+  .has-children {
+    @include active-style;
+  }
+}
+
+/* Hover logic */
+.is-desktop ul:not(.active) {
+  &:hover {
     .label {
-      height: $parent-menu-desktop;
-
-      display: grid;
-      grid-template-columns: $logo-desktop auto;
-      grid-column-gap: 10px;
-
-      align-items: center;
-      justify-content: flex-start;
-
-      padding-left: $padding-left-parent;
-
-      .logo {
-        height: $logo-desktop;
-        min-height: $logo-desktop;
-      }
-
-      .link {
-        height: $logo-mobile;
-        display: flex;
-        align-items: flex-end;
-      }
-    }
-
-    .has-children {
-      width: 100%;
-      a {
-        padding-left: $padding-left-parent + $logo-desktop + $padding-left-children;
-      }
-    }
-  }
-
-  /* Show children logic */
-  .is-desktop ul:not(.active) {
-    .has-children {
-      display: none;
-    }
-  }
-  .is-desktop ul:not(.active):hover {
-    position: relative;
-    .has-children {
-      display: initial;
-      position: absolute;
-      top: 0;
-      left: $width-desktop;
-
-      a {
-        padding: $padding-left-children;
-      }
-    }
-  }
-
-  /* Active logic */
-  .is-desktop ul.active {
-    & {
-      @include active-style;
-    }
-    .has-children {
-      @include active-style;
-    }
-  }
-
-  /* Hover logic */
-  .is-desktop ul:not(.active) {
-    &:hover {
-      .label {
-        @include hover-style;
-      }
-    }
-    .has-children li:hover {
-      @include hover-style-no-border;
-    }
-  }
-
-  .is-desktop ul.active {
-    .has-children li:hover {
       @include hover-style;
     }
+  }
+  .has-children li:hover {
+    @include hover-style-no-border;
+  }
+}
+
+.is-desktop ul.active {
+  .has-children li:hover {
+    @include hover-style;
   }
 }
