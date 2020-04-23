@@ -9,6 +9,7 @@ $menu-height-large: 3.21em;
 $menu-height-small: 44px;
 
 $submenu-height: 2.6em;
+$submenu-desktop-overview-width: 130px;
 
 $action-btn-height: 50px;
 $header-height: 40px;
@@ -191,6 +192,14 @@ ul {
     }
   }
 
+  /* Parent link styling */
+  .label {
+    .link {
+      font-weight: bold;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  }
+
   /* Parent link positioning */
   .label {
     .link {
@@ -216,14 +225,13 @@ ul {
 }
 
 .is-mobile ul.active {
+  & {
+    background-color: $submenu-bg;
+  }
   .has-children {
     @include active-style;
     box-shadow: none;
   }
-}
-
-.is-mobile ul.active {
-  background-color: $submenu-bg;
 }
 
 /* Hover Styling */
@@ -319,6 +327,7 @@ ul {
     position: absolute;
     top: 0;
     left: $sidenav-width-large;
+    width: $submenu-desktop-overview-width;
 
     a {
       padding: $padding-left-children;
