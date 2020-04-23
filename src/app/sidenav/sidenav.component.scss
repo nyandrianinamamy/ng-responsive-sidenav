@@ -9,7 +9,7 @@ $menu-height-large: 3.21em;
 $menu-height-small: 44px;
 
 $submenu-height: 2.6em;
-$submenu-desktop-overview-width: 130px;
+$submenu-desktop-overview-width: 120px;
 
 $action-btn-height: 50px;
 $header-height: 40px;
@@ -163,7 +163,7 @@ ul {
     .link {
       background-color: $submenu-bg;
       height: $menu-height-small;
-      width: $sidenav-width-small-children;
+      width: $submenu-desktop-overview-width;
 
       display: flex !important;
       align-items: center;
@@ -175,7 +175,7 @@ ul {
     }
   }
   .has-children {
-    width: $sidenav-width-small-children;
+    width: $submenu-desktop-overview-width;
     a {
       padding-left: $padding-left-children;
     }
@@ -242,6 +242,7 @@ ul {
 
     .link:hover {
       @include hover-style;
+      box-shadow: none;
     }
 
     .has-children ul li:hover {
