@@ -18,6 +18,7 @@ $padding-left-children: 10px;
 
 $sidenav-bg: #fafafa;
 $submenu-bg: #f1eded;
+$submenu-active: pink;
 $hover-bg: #e2e2e2;
 $text-default: #707070;
 $text-active: #393982;
@@ -53,7 +54,7 @@ li {
   }
   li.active {
     box-shadow: inset 3px 0 0 #1784c7;
-    background-color: $hover-bg;
+    background-color: $submenu-active;
   }
 }
 
@@ -209,9 +210,16 @@ ul {
 }
 
 /* Active styling */
-.is-mobile ul.active > .label ,
-.is-mobile ul.active > .has-children ul li.active   {
+
+.is-mobile ul.active > .label {
+  @include active-style;
+}
+
+.is-mobile ul.active {
+  .has-children {
     @include active-style;
+    box-shadow: none;
+  }
 }
 
 .is-mobile ul.active {
