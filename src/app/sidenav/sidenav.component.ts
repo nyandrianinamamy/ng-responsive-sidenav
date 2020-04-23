@@ -11,13 +11,14 @@ export class SidenavComponent implements OnInit {
 
   screenWidth: number;
   isDesktop = false;
+  collapsed = false;
   desktopWidth = 768;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
       this.screenWidth = window.innerWidth;
       if (this.screenWidth >= this.desktopWidth) {
-          this.isDesktop = true;
+          this.isDesktop = this.collapsed;
       } else {
           this.isDesktop = false;
       }
@@ -35,7 +36,7 @@ export class SidenavComponent implements OnInit {
   }
 
   toggle() {
-    this.isDesktop = !this.isDesktop;
+    this.collapsed = !this.collapsed;
+    this.isDesktop = this.collapsed;
   }
-
 }
